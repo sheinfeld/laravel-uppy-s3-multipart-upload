@@ -19,7 +19,7 @@ class UppyS3MultipartController extends Controller
     {        
         $this->s3_disk = config('uppy-s3-multipart-upload.s3_disk');
 
-        $this->client = Storage::disk($this->filesystem_disk)->getClient();
+        $this->client = Storage::disk($this->s3_disk)->getClient();
 
         $this->bucket = config('filesystems.disks.'.$this->s3_disk.'.bucket');
     }
