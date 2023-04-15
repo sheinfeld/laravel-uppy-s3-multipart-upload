@@ -1,6 +1,7 @@
 <?php
 
 return [
+    's3_disk' => 's3',
     's3' => [
         'bucket' => [
             /*

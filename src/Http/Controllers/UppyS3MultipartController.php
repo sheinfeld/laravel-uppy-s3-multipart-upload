@@ -8,16 +8,20 @@ use Illuminate\Support\Str;
 use Throwable;
 
 class UppyS3MultipartController extends Controller
-{
+{    
+    protected $s3_disk;
+
     protected $client;
 
     protected $bucket;
 
     public function __construct()
-    {
-        $this->client = Storage::disk('s3')->getClient();
+    {        
+        $this->s3_disk = config('uppy-s3-multipart-upload.s3_disk');
 
-        $this->bucket = config('filesystems.disks.s3.bucket');
+        $this->client = Storage::disk($this->filesystem_disk)->getClient();
+
+        $this->bucket = config('filesystems.disks.'.$this->s3_disk.'.bucket');
     }
 
     /**
